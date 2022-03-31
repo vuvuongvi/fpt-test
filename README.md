@@ -4,14 +4,13 @@
 
 ## Setup
 - Frontend:
-
   - npm install
   - npm run start
 - Testing:
   - npm run test
 ## DEPLOYMENT
 
-- docker build -f ./deploy/backend.Dockerfile --build-arg SERVICE=<SERVICE_NAME> --build-arg VERSION=<SERVICE_VERSION> .
+- docker build -t fpt-test . 
 - docker build -f ./deploy/frontend.Dockerfile --build-arg SERVICE=<WEBAPP_NAME> --build-arg VERSION=<WEBAPP_VERSION> .
 
 ## COMMIT STEP

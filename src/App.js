@@ -14,7 +14,7 @@ export const prime = (number) => {
       continue;
     }
     for (j = 3; j <= Math.sqrt(i); j += 2) {
-      if (i % j == 0)
+      if (i % j === 0)
         break;
     }
     if (j > Math.sqrt(i))
