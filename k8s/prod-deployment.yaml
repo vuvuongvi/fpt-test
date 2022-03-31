@@ -1,0 +1,57 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-fpt-test
+spec:
+  selector:
+    matchLabels:
+      app: prod-fpt-test
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prod-fpt-test
+    spec:
+      containers:
+        - name: prod-fpt-test
+          image: asia.gcr.io/<docker_registry_folder>/fpt-test:latest
+          resources:
+            requests:
+              cpu: 50m
+              memory: 100Mi
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: prod-fpt-test
+spec:
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: prod-fpt-test
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: 80
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: 90
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-fpt-test
+spec:
+  selector:
+    app: prod-fpt-test
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+

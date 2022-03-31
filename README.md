@@ -6,12 +6,19 @@
 - Frontend:
   - npm install
   - npm run start
-- Testing:
+
+## Testing
+- Testing coverage:
   - npm run test
+  - File coverage will export in coverage folder after run command
+
 ## DEPLOYMENT
 
-- docker build -t fpt-test . 
-- docker build -f ./deploy/frontend.Dockerfile --build-arg SERVICE=<WEBAPP_NAME> --build-arg VERSION=<WEBAPP_VERSION> .
+- docker build -t fpt-test:<version> . 
+- docker tag fpt-test:<version> asia.gcr.io/<docker_registry>/fpt-test:<version>
+- docker push asia.gcr.io/<docker_registry>/<docker_image>:<tag>
+- In GKE cluster, deploy k8s deployment in folder k8s via command ```kubectl apply -f prod-deployment.yaml```
+- You have to change specific registry location image with docker registry.
 
 ## COMMIT STEP
 

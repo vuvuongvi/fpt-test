@@ -23,9 +23,8 @@ RUN apk add bash
 
 WORKDIR /app
 COPY --from=builder /app/docker_start.sh .
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/docker/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/docker/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["bash", "./docker_start.sh"]
