@@ -2,6 +2,26 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useState } from 'react';
 
+export const prime = (number) => {
+  if (number && 1) {
+    number -= 2;
+  } else {
+    number--;
+  }
+  let i, j;
+  for (i = number; i >= 2; i -= 2) {
+    if (i % 2 === 0) {
+      continue;
+    }
+    for (j = 3; j <= Math.sqrt(i); j += 2) {
+      if (i % j == 0)
+        break;
+    }
+    if (j > Math.sqrt(i))
+      return i;
+  }
+  return 2;
+}
 function App() {
   const [fName, setfName] = useState('');
   const [fNumber, setNumber] = useState('');
@@ -12,26 +32,6 @@ function App() {
     let calculatePrimeValue = prime(frmdetails.fName)
     setNumber(calculatePrimeValue);
 }
-  const prime = (number) => {
-    if (number && 1) {
-      number -= 2;
-    } else {
-      number--;
-    }
-    let i, j;
-    for (i = number; i >= 2; i -= 2) {
-      if (i % 2 === 0) {
-        continue;
-      }
-      for (j = 3; j <= Math.sqrt(i); j += 2) {
-        if (i % j == 0)
-          break;
-      }
-      if (j > Math.sqrt(i))
-        return i;
-    }
-    return 2;
-  }
   return (
     <div className="App">
       <header className="App-header">

@@ -1,8 +1,4 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
-
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import * as App from './App';
+test('should return prime number', () => {
+  expect(App.prime(5)).toBe(3)
 });
