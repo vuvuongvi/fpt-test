@@ -17,10 +17,16 @@ spec:
         - name: prod-fpt-test
           image: asia.gcr.io/<docker_registry_folder>/fpt-test:latest
           resources:
+            # here is application resource need to run and application resource limit
             requests:
               cpu: 50m
               memory: 100Mi
+            limit:
+              cpu: 50m
+              memory: 100Mi
 ---
+# here for autoscale when resource reach limit
+# with horizontal scale resource min with 1 replicas, max 5 replicas
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:

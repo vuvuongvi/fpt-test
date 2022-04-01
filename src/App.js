@@ -3,6 +3,9 @@ import './App.css';
 import React, { useState } from 'react';
 
 export const prime = (number) => {
+  if(typeof number === 'string' || typeof number === 'object') {
+    return NaN;
+  }
   if (number && 1) {
     number -= 2;
   } else {
@@ -29,7 +32,7 @@ function App() {
     const frmdetails = {
       fName
     }
-    let calculatePrimeValue = prime(frmdetails.fName)
+    let calculatePrimeValue = prime(parseInt(frmdetails.fName))
     setNumber(calculatePrimeValue);
 }
   return (
@@ -37,7 +40,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <input type="number" placeholder="input number" name="name" onChange={e => setfName(e.target.value)} />
-        <button type="submit" onClick={submitValue}>submit</button>
+        <button type="submit" onClick={submitValue}>Submit</button>
         <div>
           {fNumber}
         </div>

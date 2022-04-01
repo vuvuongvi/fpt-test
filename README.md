@@ -14,8 +14,8 @@
 
 ## DEPLOYMENT
 
-- docker build -t fpt-test:<version> . 
-- docker tag fpt-test:<version> asia.gcr.io/<docker_registry>/fpt-test:<version>
+- docker build -t fpt-test:```<version>``` . 
+- docker tag fpt-test:<version> asia.gcr.io/<docker_registry>/fpt-test:```<version>```
 - docker push asia.gcr.io/<docker_registry>/<docker_image>:<tag>
 - In GKE cluster, deploy k8s deployment in folder k8s via command ```kubectl apply -f prod-deployment.yaml```
 - You have to change specific registry location image with docker registry.
